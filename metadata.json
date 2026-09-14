@@ -1,0 +1,6 @@
+{
+  "name": "TrueID Free",
+  "description": "100% Free Truecaller alternative with instant Caller ID, Smart Spam Blocker, Number Lookup and offline directory without subscriptions or ads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
