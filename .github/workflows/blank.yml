@@ -17,11 +17,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build Debug APK
-        run: gradle assembleDebug
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Save APK File
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew || true
+
+      - name: Build Debug APK
+        run: |
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleDebug
+          else
+            gradle assembleDebug
+          fi
+
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: my-app-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: app-debug-apk
+          path: |
+            **/build/outputs/apk/debug/*.apk
+            **/build/outputs/apk/*/*.apk
